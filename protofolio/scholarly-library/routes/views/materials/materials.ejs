@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materials</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Scholarly Library</a>
+                <div class="navbar-nav">
+                    <a class="nav-link" href="/search">Search</a>
+                    <a class="nav-link" href="/about">About</a>
+                </div>
+            </div>
+        </nav>
+
+        <h1 class="mt-3 mb-4">All Materials</h1>
+        <div class="card">
+            <div class="card-body">
+                <ul class="list-group">
+                    <% materials.forEach(material=> { %>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>
+                                <%= material.title %> by <%= material.authors %> - $<%= material.price %> (<%=
+                                                material.category %>)
+                            </span>
+                            <div class="btn-group">
+                                <a href="/editmaterial/<%= material.id %>" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="/deletematerial/<%= material.id %>" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm ms-2">Delete</button>
+                                </form>
+                            </div>
+                        </li>
+                        <% }) %>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-3">
+            <a class="btn btn-primary" href="/addmaterial">Add New Material</a>
+            <a class="btn btn-secondary" href="/">Back to Home</a>
+        </div>
+    </div>
+</body>
+
+</html>
